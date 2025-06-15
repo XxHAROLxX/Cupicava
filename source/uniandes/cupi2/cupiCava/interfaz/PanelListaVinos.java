@@ -60,7 +60,7 @@ public class PanelListaVinos extends JPanel implements ListSelectionListener, Ac
     /**
      * Lista de los vinos.
      */
-    // TODO Parte3 PuntoA: Declare el atributo listaVinos de tipo JList.
+    private JList listaVinos;
 
     /**
      * Panel con un scroll que contiene a listaVinos.
@@ -71,6 +71,7 @@ public class PanelListaVinos extends JPanel implements ListSelectionListener, Ac
      * Botón para agregar un nuevo vino.
      */
     private JButton botonAgregar;
+
 
     // -----------------------------------------------------------------
     // Constructor
@@ -88,14 +89,18 @@ public class PanelListaVinos extends JPanel implements ListSelectionListener, Ac
         setBorder( new CompoundBorder( new EmptyBorder( 0, 5, 0, 5 ), new TitledBorder( "Lista de vinos" ) ) );
         setPreferredSize( new Dimension( 250, 0 ) );
 
-        // TODO Parte3 PuntoB: Inicializar la lista de vinos y agregarle un ListSelectionListener
-        
+        //  Inicializar la lista de vinos y agregarle un ListSelectionListener
+        listaVinos = new JList();
+        listaVinos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        listaVinos.addListSelectionListener(this);
 
-     // TODO Parte3 PuntoC: Inicializar el scroll.
+        //  Inicializar el scroll.
+        scroll = new JScrollPane(listaVinos);
         scroll.setHorizontalScrollBarPolicy( JScrollPane.HORIZONTAL_SCROLLBAR_NEVER );
         scroll.setVerticalScrollBarPolicy( JScrollPane.VERTICAL_SCROLLBAR_ALWAYS );
         scroll.setBorder( new CompoundBorder( new EmptyBorder( 3, 3, 3, 3 ), new LineBorder( Color.BLACK, 1 ) ) );
 
+        
         botonAgregar = new JButton( AGREGAR );
         botonAgregar.setActionCommand( AGREGAR );
         botonAgregar.addActionListener( this );

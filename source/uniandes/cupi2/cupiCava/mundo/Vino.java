@@ -9,11 +9,17 @@
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
  */
 package uniandes.cupi2.cupiCava.mundo;
-
 /**
  * Clase que representa un vino almacenado en la Cupi-Cava.<br>
  * <b>inv: </b> <br>
- * TODO Parte1 PuntoA: Declare la invariante de la clase.
+ * nombre != null && nombre != "".
+ * presentacion != null && presentacion != "" && (presentacion == BOTELLA || presentacion == BARRIL).
+ * anhoElaboracion > 0.
+ * contenidoAzucar >= 0.
+ * tipo != null && tipo != "" && (tipo == SECO || tipo == ABOCADO || tipo == SEMI_SECO || tipo == SEMI_DULCE || tipo == DULCE).
+ * color != null && color != "" && (color == TINTO || color == ROSADO || color == BLANCO).
+ * lugarOrigen != null && lugarOrigen != "".
+ * imagen != null && imagen != "".
  */
 public class Vino
 {
@@ -255,10 +261,15 @@ public class Vino
      */
     public int compararPorAnhoElaboracion( Vino pVino )
     {
-   	 	if (anhoElavo)
+    	 if (anhoElaboracion == pVino.darAnhoElaboracion())
+             return 0;
+         else if (anhoElaboracion < pVino.darAnhoElaboracion())
+             return -1;
+         else
+             return 1;
    }
 
-    /**
+    /** 
      * Compara dos vinos según el contenido en azúcar. <br>
      * @param pVino Vino contra el cual se está comparando. pVino !=null.
      * @return Retorna 0 si los vinos tienen el mismo contenido en azúcar. <br>
@@ -267,8 +278,13 @@ public class Vino
      */
     public int compararPorContenidoAzucar( Vino pVino )
     {
-   	 // TODO Parte2 PuntoD: Implemente el método según la documentación dada.
-   }
+        if (contenidoAzucar == pVino.darContenidoAzucar())
+            return 0;
+        else if (contenidoAzucar < pVino.darContenidoAzucar())
+            return -1;
+        else
+            return 1;
+    }
 
     /**
      * Compara dos vinos según el tipo de vino. <br>
@@ -278,9 +294,9 @@ public class Vino
      *         Retorna 1 si el vino pVino tiene un valor "MENOR" para el tipo. <br>
      */
     public int compararPorTipo( Vino pVino )
-    {
-   	 // TODO Parte2 PuntoE: Implemente el método según la documentación dada.
-   }
+    {   
+    	return tipo.compareToIgnoreCase(pVino.darTipo());
+    }
 
     /**
      * Compara dos vinos según el color. <br>
@@ -291,7 +307,7 @@ public class Vino
      */
     public int compararPorColor( Vino pVino )
     {
-   	 // TODO Parte2 PuntoF: Implemente el método según la documentación dada.
+    	return color.compareToIgnoreCase(pVino.darColor());
     }
 
     /**
@@ -303,8 +319,8 @@ public class Vino
      */
     public int compararPorLugarOrigen( Vino pVino )
     {
-   	 // TODO Parte2 PuntoG: Implemente el método según la documentación dada.
-   }
+    	return lugarOrigen.compareToIgnoreCase(pVino.darLugarOrigen());
+    }
 
     /**
      * Retorna una cadena con el nombre del vino.
@@ -319,5 +335,30 @@ public class Vino
     // Invariante
     // -----------------------------------------------------------------
 
-    // TODO Parte1 PuntoB: Documente e implemente el método verificarInvariante. Si lo desea puede crear métodos privados en esta parte.
+    /**
+     * Verifica el invariante de la clase
+     * <b>inv: </b> <br>
+     * nombre != null && nombre != "".
+     * presentacion != null && presentacion != "" && (presentacion == BOTELLA || presentacion == BARRIL).
+     * anhoElaboracion > 0.
+     * contenidoAzucar >= 0.
+     * tipo != null && tipo != "" && (tipo == SECO || tipo == ABOCADO || tipo == SEMI_SECO || tipo == SEMI_DULCE || tipo == DULCE).
+     * color != null && color != "" && (color == TINTO || color == ROSADO || color == BLANCO).
+     * lugarOrigen != null && lugarOrigen != "".
+     * imagen != null && imagen != "".
+     */
+    private void verificarInvariante() {
+        assert nombre != null && !nombre.isEmpty() : "El nombre no puede ser nulo o vacío";
+        assert presentacion != null && !presentacion.isEmpty() : "La presentación no puede ser nula o vacía";
+        assert presentacion.equals(BOTELLA) || presentacion.equals(BARRIL) : "La presentación debe ser botella o barril";
+        assert anhoElaboracion > 0 : "El año de elaboración debe ser mayor que cero";
+        assert contenidoAzucar >= 0 : "El contenido de azúcar debe ser mayor o igual a cero";
+        assert tipo != null && !tipo.isEmpty() : "El tipo no puede ser nulo o vacío";
+        assert tipo.equals(SECO) || tipo.equals(ABOCADO) || tipo.equals(SEMI_SECO) || tipo.equals(SEMI_DULCE) || tipo.equals(DULCE) : "El tipo debe ser válido";
+        assert color != null && !color.isEmpty() : "El color no puede ser nulo o vacío";
+        assert color.equals(TINTO) || color.equals(ROSADO) || color.equals(BLANCO) : "El color debe ser tinto, rosado o blanco";
+        assert lugarOrigen != null && !lugarOrigen.isEmpty() : "El lugar de origen no puede ser nulo o vacío";
+        assert imagen != null && !imagen.isEmpty() : "La imagen no puede ser nula o vacía";
+    }
 }
+  
