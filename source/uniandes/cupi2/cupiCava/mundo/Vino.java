@@ -231,7 +231,7 @@ public class Vino
      */
     public int compararPorNombre( Vino pVino )
     {
-    	 // TODO Parte2 PuntoA: Implemente el método según la documentación dada.
+    	 return nombre.compareToIgnoreCase(pVino.darNombre());
     }
 
     /**
@@ -243,7 +243,7 @@ public class Vino
      */
     public int compararPorPresentacion( Vino pVino )
     {
-   	 // TODO Parte2 PuntoB: Implemente el método según la documentación dada.
+   	return presentacion.compareToIgnoreCase(pVino.darPresentacion());
    }
 
     /**
@@ -255,7 +255,7 @@ public class Vino
      */
     public int compararPorAnhoElaboracion( Vino pVino )
     {
-   	 // TODO Parte2 PuntoC: Implemente el método según la documentación dada.
+   	 	if (anhoElavo)
    }
 
     /**
